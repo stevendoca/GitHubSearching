@@ -1,0 +1,61 @@
+import {
+  SEARCH_USERS,
+  CLEAR_USERS,
+  GET_REPOS,
+  SET_LOADING,
+  SET_ALERT,
+  REMOVE_ALERT,
+  GET_USER,
+} from "../types";
+
+export default (state, action) => {
+  switch (action.type) {
+    case SEARCH_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false,
+      };
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+      };
+    case CLEAR_USERS:
+      return {
+        ...state,
+        users: [],
+        loading: false,
+      };
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_ALERT:
+      return {
+        ...state,
+        alert: {
+          message: action.payload.messageContent,
+          type: action.payload.typeContent,
+        },
+      };
+    case REMOVE_ALERT:
+      return {
+        ...state,
+        alert: {
+          message: "",
+          type: "",
+        },
+      };
+    default:
+      return state;
+  }
+};
